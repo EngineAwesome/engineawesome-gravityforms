@@ -1,5 +1,4 @@
 <?php
-
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -44,33 +43,33 @@ class EA_GF_Plugin {
 	 */
 	public function render_tab_content( $form, $tab_id ) {
 		?>
-		<h2>Webhook Settings</h2>
-		<p>These settings only apply to a webhook in Gravity Forms.</p>
+		<h2><?php echo esc_html__( 'Webhook Settings', 'engineawesomegravityforms' ); ?></h2>
+		<p><?php echo esc_html__( 'These settings only apply to a webhook in Gravity Forms.', 'engineawesomegravityforms' ); ?></p>
 		<li class="awesome_addto_setting">
 			<label for="field_awesome_addto">
-				Add To Field <?php gform_tooltip( 'awesome_addto_tooltip' ); ?>
+				<?php echo esc_html__( 'Add To Field', 'engineawesomegravityforms' ); ?> <?php gform_tooltip( 'awesome_addto_tooltip' ); ?>
 			</label>
 			<input type="text" id="field_awesome_addto" onkeyup="SetFieldProperty('awesomeAddTo', this.value);" />
-			<p class="description">Enter the field to add to.</p>
+			<p class="description"><?php echo esc_html__( 'Enter the field to add to.', 'engineawesomegravityforms' ); ?></p>
 		</li>
 		<li class="awesome_convert_setting">
 			<label for="field_awesome_convert">
-				Convert to <?php gform_tooltip( 'awesome_convert_tooltip' ); ?>
+				<?php echo esc_html__( 'Convert to', 'engineawesomegravityforms' ); ?> <?php gform_tooltip( 'awesome_convert_tooltip' ); ?>
 			</label>
 			<select id="field_awesome_convert" onchange="SetFieldProperty('awesomeConvert', this.value);">
-				<option value="">Default</option>
-				<option value="array">Array</option>
-				<option value="comma_delimited">Comma delimited</option>
-				<option value="space">Space</option>
+				<option value=""><?php echo esc_html__( 'Default', 'engineawesomegravityforms' ); ?></option>
+				<option value="array"><?php echo esc_html__( 'Array', 'engineawesomegravityforms' ); ?></option>
+				<option value="comma_delimited"><?php echo esc_html__( 'Comma delimited', 'engineawesomegravityforms' ); ?></option>
+				<option value="space"><?php echo esc_html__( 'Space', 'engineawesomegravityforms' ); ?></option>
 			</select>
-			<p class="description">Select how to convert the input.</p>
+			<p class="description"><?php echo esc_html__( 'Select how to convert the input.', 'engineawesomegravityforms' ); ?></p>
 		</li>
 		<li class="awesome_meta_key_setting">
 			<label for="field_awesome_meta_key">
-				Meta Key <?php gform_tooltip( 'awesome_meta_key_tooltip' ); ?>
+				<?php echo esc_html__( 'Meta Key', 'engineawesomegravityforms' ); ?> <?php gform_tooltip( 'awesome_meta_key_tooltip' ); ?>
 			</label>
 			<input type="text" id="field_awesome_meta_key" onkeyup="SetFieldProperty('awesomeMetaKey', this.value);" />
-			<p class="description">Enter a meta key.</p>
+			<p class="description"><?php echo esc_html__( 'Enter a meta key.', 'engineawesomegravityforms' ); ?></p>
 		</li>
 		<?php
 	}
@@ -82,10 +81,9 @@ class EA_GF_Plugin {
 	 * @return array
 	 */
 	public function add_tooltips( $tooltips ) {
-
-		$tooltips['awesome_addto_tooltip']  = __( '<h6>Add To Field</h6>Enter the field to add to. This value will be appended to the target field.', 'txtdomain' );
-		$tooltips['awesome_convert_tooltip'] = __( '<h6>Convert To</h6>Select how to convert the input. Choose "Array" to output as an array, "Comma delimited" to output as a string, "Space" to output as a space‑separated string, or "Default" to leave the output unchanged.', 'txtdomain' );
-		$tooltips['awesome_meta_key_tooltip'] = __( '<h6>Meta Key</h6>Enter a meta key to associate with this field.', 'txtdomain' );
+		$tooltips['awesome_addto_tooltip']  = __( '<h6>Add To Field</h6>' . esc_html__( 'Enter the field to add to. This value will be appended to the target field.', 'engineawesomegravityforms' ), 'engineawesomegravityforms' );
+		$tooltips['awesome_convert_tooltip'] = __( '<h6>Convert To</h6>' . esc_html__( 'Select how to convert the input. Choose "Array" to output as an array, "Comma delimited" to output as a string, "Space" to output as a space‑separated string, or "Default" to leave the output unchanged.', 'engineawesomegravityforms' ), 'engineawesomegravityforms' );
+		$tooltips['awesome_meta_key_tooltip'] = __( '<h6>Meta Key</h6>' . esc_html__( 'Enter a meta key to associate with this field.', 'engineawesomegravityforms' ), 'engineawesomegravityforms' );
 		return $tooltips;
 	}
 
@@ -93,22 +91,8 @@ class EA_GF_Plugin {
 	 * Enqueues the editor JavaScript.
 	 */
 	public function enqueue_editor_js() {
-		?>
-		<script type="text/javascript">
-			jQuery(document).on("gform_load_field_settings", function(event, field, form) {
-				jQuery("#field_awesome_addto").val(field["awesomeAddTo"]);
-				jQuery("#field_awesome_meta_key").val(field["awesomeMetaKey"]);
-				var allowedTypes = ['checkbox', 'radio', 'select', 'multiselect', 'phone', 'address', 'name'];
-				// Hide "Convert to" for name fields.
-				if (allowedTypes.indexOf(field.type) !== -1 && field.type != 'name') {
-					jQuery("#field_awesome_convert").closest("li.awesome_convert_setting").show();
-					jQuery("#field_awesome_convert").val(field["awesomeConvert"]);
-				} else {
-					jQuery("#field_awesome_convert").closest("li.awesome_convert_setting").hide();
-				}
-			});
-		</script>
-		<?php
+		// Enqueue an external JS file instead of inline JS.
+		wp_enqueue_script( 'ea-gf-editor-js', plugin_dir_url( __FILE__ ) . 'assets/js/ea-editor.js', array( 'jquery' ), '1.0', true );
 	}
 
 	/**
@@ -146,11 +130,11 @@ class EA_GF_Plugin {
 	protected function get_field_settings( $form ) {
 		$settings = array();
 		foreach ( $form['fields'] as $field ) {
-			$field_id                = (string) $field->id;
+			$field_id = (string) $field->id;
 			$settings[ $field_id ] = array(
-				'meta'       => ! empty( $field->awesomeMetaKey ) ? $field->awesomeMetaKey : null,
-				'convert'    => ( isset( $field->awesomeConvert ) && $field->awesomeConvert !== '' ) ? $field->awesomeConvert : 'default',
-				'addto'      => ! empty( $field->awesomeAddTo ) ? $field->awesomeAddTo : null,
+				'meta'       => ! empty( $field->awesomeMetaKey ) ? sanitize_text_field( $field->awesomeMetaKey ) : null,
+				'convert'    => ( isset( $field->awesomeConvert ) && $field->awesomeConvert !== '' ) ? sanitize_text_field( $field->awesomeConvert ) : 'default',
+				'addto'      => ! empty( $field->awesomeAddTo ) ? sanitize_text_field( $field->awesomeAddTo ) : null,
 				'has_inputs' => ( isset( $field->inputs ) && is_array( $field->inputs ) ),
 				'type'       => $field->type,
 			);
@@ -175,7 +159,7 @@ class EA_GF_Plugin {
 			$values = array();
 			foreach ( $request_data as $key => $v ) {
 				if ( strpos( $key, $base . '.' ) === 0 && $v !== '' && $v !== null ) {
-					$values[] = $v;
+					$values[] = sanitize_text_field( $v );
 				}
 			}
 			if ( ! empty( $values ) ) {
@@ -205,7 +189,7 @@ class EA_GF_Plugin {
 				if ( strpos( $key, $base . '.' ) === 0 && $v !== '' && $v !== null ) {
 					$parts  = explode( '.', $key, 2 );
 					$subkey = $parts[1];
-					$result[ ( $fs['meta'] ? $fs['meta'] : $base ) . '.' . $subkey ] = $v;
+					$result[ ( $fs['meta'] ? $fs['meta'] : $base ) . '.' . $subkey ] = sanitize_text_field( $v );
 				}
 			}
 			return $result;
@@ -224,13 +208,14 @@ class EA_GF_Plugin {
 		$values = array();
 		if ( $fs['has_inputs'] ) {
 			foreach ( $request_data as $key => $v ) {
-				if ( explode( '.', $key )[0] == $base && $v !== '' && $v !== null ) {
-					$values[] = $v;
+				$parts = explode( '.', $key );
+				if ( $parts[0] == $base && $v !== '' && $v !== null ) {
+					$values[] = sanitize_text_field( $v );
 				}
 			}
 		} else {
 			if ( isset( $request_data[ $base ] ) && $request_data[ $base ] !== '' && $request_data[ $base ] !== null ) {
-				$values[] = $request_data[ $base ];
+				$values[] = sanitize_text_field( $request_data[ $base ] );
 			}
 		}
 		if ( empty( $values ) ) {
@@ -334,7 +319,7 @@ class EA_GF_Plugin {
 					continue;
 				}
 				if ( ! isset( $output[ $key ] ) ) {
-					$output[ $key ] = $v;
+					$output[ $key ] = sanitize_text_field( $v );
 				}
 			}
 
