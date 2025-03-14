@@ -9,7 +9,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: https://engineawesome.com
 
 == Description ==
-Engine Awesome / Gravity Forms Helper enhances the integration between Gravity Forms and Engine Awesome by adding custom webhook settings and additional field configuration options. With this plugin, you can easily configure custom field tooltips, control field data conversion, and integrate seamlessly with Gravity Forms Webhooks for more advanced form handling.
+Engine Awesome / Gravity Forms Helper enhances the integration between Gravity Forms and Engine Awesome by adding custom webhook settings and additional field configuration options.
 
 == Installation ==
 1. Upload the entire `engineawesome-gravityforms` folder to the `/wp-content/plugins/` directory.
@@ -20,13 +20,13 @@ Engine Awesome / Gravity Forms Helper enhances the integration between Gravity F
 
 == Frequently Asked Questions ==
 = What does this plugin do? =
-It extends Gravity Forms by adding advanced webhook integration and custom field settings specifically for Engine Awesome, allowing for enhanced data handling and conversion options.
+It extends the Gravity Forms Webhook addon by adding advanced webhook integration and custom field settings specifically for Engine Awesome, allowing for enhanced data handling and conversion options.
 
 = How do I see the custom field settings? =
-When editing a form in Gravity Forms, you will find a new "Engine Awesome" tab in the field settings area. This tab provides options to set custom tooltips, conversion methods, and meta keys.
+When editing a form in Gravity Forms, you will find a new "Engine Awesome" tab in the field settings area. This tab provides options to set custom options, conversion methods, and meta keys.
 
 = Why isn’t the plugin functionality showing up? =
-Ensure that Gravity Forms and (if needed) the Gravity Forms Webhooks add-on are both active. 
+Ensure that Gravity Forms and the Gravity Forms Webhooks add-on are both active. 
 
 == Changelog ==
 = 1.2 =
