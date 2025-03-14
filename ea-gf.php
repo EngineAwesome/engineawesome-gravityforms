@@ -9,6 +9,7 @@ Author URI: https://engineawesome.com
 License: GPL-2.0+
 Text Domain: engineawesomegravityforms
 Domain Path: /languages
+GitHub Plugin URI: https://github.com/EngineAwesome/engineawesome-gravityforms
 */
 
 // If Gravity Forms is loaded, bootstrap our plugin.
