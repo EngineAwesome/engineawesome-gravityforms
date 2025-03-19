@@ -1,7 +1,7 @@
 === Engine Awesome / Gravity Forms Helper ===
 Contributors: engineawesome
 Tags: gravity forms, engine awesome, webhooks, integration, helper
-Requires at least: 4.0
+Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 5.6
 License: GPL-2.0+
