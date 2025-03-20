@@ -1,15 +1,15 @@
 <?php
 /*
-Plugin Name: Engine Awesome / Gravity Forms Helper
+Plugin Name: Engine Awesome / Gravity Forms Integrator
 Plugin URI: https://engineawesome.com
 Description: Enhances the integration with Engine Awesome and Gravity Forms.
 Version: 1.2
+Stable: 1.2
 Author: Engine Awesome
 Author URI: https://engineawesome.com
 License: GPL-2.0+
-Text Domain: engineawesomegravityforms
+Text Domain: engineawesome-gf
 Domain Path: /languages
-GitHub Plugin URI: https://github.com/EngineAwesome/engineawesome-gravityforms
 */
 
 // If Gravity Forms is loaded, bootstrap our plugin.

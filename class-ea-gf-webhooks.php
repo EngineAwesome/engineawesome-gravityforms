@@ -43,33 +43,33 @@ class EA_GF_Plugin {
 	 */
 	public function render_tab_content( $form, $tab_id ) {
 		?>
-		<h2><?php echo esc_html__( 'Webhook Settings', 'engineawesomegravityforms' ); ?></h2>
-		<p><?php echo esc_html__( 'These settings only apply to a webhook in Gravity Forms.', 'engineawesomegravityforms' ); ?></p>
+		<h2><?php echo esc_html__( 'Webhook Settings', 'engineawesome-gf' ); ?></h2>
+		<p><?php echo esc_html__( 'These settings only apply to a webhook in Gravity Forms.', 'engineawesome-gf' ); ?></p>
 		<li class="awesome_addto_setting">
 			<label for="field_awesome_addto">
-				<?php echo esc_html__( 'Add To Field', 'engineawesomegravityforms' ); ?> <?php gform_tooltip( 'awesome_addto_tooltip' ); ?>
+				<?php echo esc_html__( 'Add To Field', 'engineawesome-gf' ); ?> <?php gform_tooltip( 'awesome_addto_tooltip' ); ?>
 			</label>
 			<input type="text" id="field_awesome_addto" onkeyup="SetFieldProperty('awesomeAddTo', this.value);" />
-			<p class="description"><?php echo esc_html__( 'Enter the field to add to.', 'engineawesomegravityforms' ); ?></p>
+			<p class="description"><?php echo esc_html__( 'Enter the field to add to.', 'engineawesome-gf' ); ?></p>
 		</li>
 		<li class="awesome_convert_setting">
 			<label for="field_awesome_convert">
-				<?php echo esc_html__( 'Convert to', 'engineawesomegravityforms' ); ?> <?php gform_tooltip( 'awesome_convert_tooltip' ); ?>
+				<?php echo esc_html__( 'Convert to', 'engineawesome-gf' ); ?> <?php gform_tooltip( 'awesome_convert_tooltip' ); ?>
 			</label>
 			<select id="field_awesome_convert" onchange="SetFieldProperty('awesomeConvert', this.value);">
-				<option value=""><?php echo esc_html__( 'Default', 'engineawesomegravityforms' ); ?></option>
-				<option value="array"><?php echo esc_html__( 'Array', 'engineawesomegravityforms' ); ?></option>
-				<option value="comma_delimited"><?php echo esc_html__( 'Comma delimited', 'engineawesomegravityforms' ); ?></option>
-				<option value="space"><?php echo esc_html__( 'Space', 'engineawesomegravityforms' ); ?></option>
+				<option value=""><?php echo esc_html__( 'Default', 'engineawesome-gf' ); ?></option>
+				<option value="array"><?php echo esc_html__( 'Array', 'engineawesome-gf' ); ?></option>
+				<option value="comma_delimited"><?php echo esc_html__( 'Comma delimited', 'engineawesome-gf' ); ?></option>
+				<option value="space"><?php echo esc_html__( 'Space', 'engineawesome-gf' ); ?></option>
 			</select>
-			<p class="description"><?php echo esc_html__( 'Select how to convert the input.', 'engineawesomegravityforms' ); ?></p>
+			<p class="description"><?php echo esc_html__( 'Select how to convert the input.', 'engineawesome-gf' ); ?></p>
 		</li>
 		<li class="awesome_meta_key_setting">
 			<label for="field_awesome_meta_key">
-				<?php echo esc_html__( 'Meta Key', 'engineawesomegravityforms' ); ?> <?php gform_tooltip( 'awesome_meta_key_tooltip' ); ?>
+				<?php echo esc_html__( 'Meta Key', 'engineawesome-gf' ); ?> <?php gform_tooltip( 'awesome_meta_key_tooltip' ); ?>
 			</label>
 			<input type="text" id="field_awesome_meta_key" onkeyup="SetFieldProperty('awesomeMetaKey', this.value);" />
-			<p class="description"><?php echo esc_html__( 'Enter a meta key.', 'engineawesomegravityforms' ); ?></p>
+			<p class="description"><?php echo esc_html__( 'Enter a meta key.', 'engineawesome-gf' ); ?></p>
 		</li>
 		<?php
 	}
@@ -81,9 +81,24 @@ class EA_GF_Plugin {
 	 * @return array
 	 */
 	public function add_tooltips( $tooltips ) {
-		$tooltips['awesome_addto_tooltip']  = __( '<h6>Add To Field</h6>' . esc_html__( 'Enter the field to add to. This value will be appended to the target field.', 'engineawesomegravityforms' ), 'engineawesomegravityforms' );
-		$tooltips['awesome_convert_tooltip'] = __( '<h6>Convert To</h6>' . esc_html__( 'Select how to convert the input. Choose "Array" to output as an array, "Comma delimited" to output as a string, "Space" to output as a space‑separated string, or "Default" to leave the output unchanged.', 'engineawesomegravityforms' ), 'engineawesomegravityforms' );
-		$tooltips['awesome_meta_key_tooltip'] = __( '<h6>Meta Key</h6>' . esc_html__( 'Enter a meta key to associate with this field.', 'engineawesomegravityforms' ), 'engineawesomegravityforms' );
+		$tooltips['awesome_addto_tooltip'] = sprintf(
+			'<h6>%s</h6> %s',
+			__('Add To Field', 'engineawesome-gf'),
+			__('Enter the field to add to. This value will be appended to the target field.', 'engineawesome-gf')
+		);
+		
+		$tooltips['awesome_convert_tooltip'] = sprintf(
+			'<h6>%s</h6> %s',
+			__('Convert To', 'engineawesome-gf'),
+			__('Select how to convert the input. Choose "Array" to output as an array, "Comma delimited" to output as a string, "Space" to output as a space‑separated string, or "Default" to leave the output unchanged.', 'engineawesome-gf')
+		);
+		
+		$tooltips['awesome_meta_key_tooltip'] = sprintf(
+			'<h6>%s</h6> %s',
+			__('Meta Key', 'engineawesome-gf'),
+			__('Enter a meta key to associate with this field.', 'engineawesome-gf')
+		);
+		
 		return $tooltips;
 	}
 
